@@ -1,0 +1,74 @@
+% Shanghai University Beamer theme, based on Sheng Li's SHU Beamer template.
+% https://www.overleaf.com/latex/templates/shang-hai-da-xue-beamermo-ban/njsnkhjrmdns
+% Overleaf release: CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/).
+% Blue edition: new palette, frame headings, footer and monochrome emblem.
+% Layout reference: Rishit Dagli's UofT Slide Template (Beamer Madrid).
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{SHU}[2026/11/17 Shanghai University blue Beamer theme]
+\mode<presentation>
+
+\usetheme{Madrid}
+\definecolor{SHU}{cmyk}{1,0.70,0.20,0.20}
+% 加深黑版，保留三块页脚的青、品红、黄色版比例。
+\definecolor{SHUdark}{cmyk}{1,0.70,0.20,0.55}
+\definecolor{SHUmid}{cmyk}{1,0.70,0.20,0.37}
+
+\setbeamercolor{structure}{fg=SHU}
+\setbeamercolor{palette primary}{fg=white,bg=SHU}
+\setbeamercolor{palette secondary}{fg=white,bg=SHUmid}
+\setbeamercolor{palette tertiary}{fg=white,bg=SHUdark}
+\setbeamercolor{title}{fg=white,bg=SHU}
+\setbeamercolor{subtitle}{fg=white}
+\setbeamercolor{frametitle}{fg=white,bg=SHU}
+\setbeamercolor{framesubtitle}{fg=white}
+\setbeamerfont{title}{series=\bfseries}
+\setbeamerfont{subtitle}{series=\mdseries}
+\setbeamerfont{frametitle}{size=\Large,series=\mdseries}
+\setbeamertemplate{headline}{}
+\setbeamertemplate{frametitle}[default][left]
+\setbeamertemplate{title page}[default]
+
+% 语义块用蓝色深浅区分，投影时仍可根据块标题辨认其用途。
+\setbeamercolor{alerted text}{fg=SHUdark}
+\setbeamercolor{example text}{fg=SHU}
+\setbeamercolor{block title}{fg=white,bg=SHU}
+\setbeamercolor{block body}{fg=black,bg=SHU!6!white}
+\setbeamercolor{block title alerted}{fg=white,bg=SHUdark}
+\setbeamercolor{block body alerted}{fg=black,bg=SHU!11!white}
+\setbeamercolor{block title example}{fg=SHUdark,bg=SHU!19!white}
+\setbeamercolor{block body example}{fg=black,bg=SHU!4!white}
+\setbeamertemplate{blocks}[rounded][shadow=false]
+\setbeamertemplate{bibliography item}[text]
+\setbeamertemplate{caption}[numbered]
+\setbeamersize{text margin left=.40cm,text margin right=.40cm}
+
+% 保留原模板的页码分隔符接口。三栏由 Beamer 的 infolines 主题排版。
+\newcommand{\frameofframes}{/}
+\newcommand{\setframeofframes}[1]{\renewcommand{\frameofframes}{#1}}
+\setbeamertemplate{page number in head/foot}{%
+  \insertframenumber\,\frameofframes\,\inserttotalframenumber}
+
+% 校徽来自上海大学官网 https://www.shu.edu.cn/images/logo.svg ，填色为 #B8B8B8。
+% 页脚为正文校徽预留空间。封面在主文件中通过局部 \logo{} 隐藏角标。
+\logo{\includegraphics[height=.64cm]{pic/SHU-gray.pdf}}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{sidebar right}{}
+\addtobeamertemplate{footline}{%
+  \vbox{%
+    \hbox to \paperwidth{\hfil\insertlogo\hskip.18cm}%
+    \vskip3pt%
+  }%
+  \nointerlineskip
+}{}
+
+% 沿用原模板的章节目录。主文件可用 \AtBeginSection[]{} 关闭章节过渡。
+\AtBeginSection[]{%
+  \begin{frame}{\contentsname}
+    \tableofcontents[currentsection,hideallsubsections]
+  \end{frame}}
+\AtBeginSubsection[]{%
+  \begin{frame}{\contentsname}
+    \tableofcontents[currentsection,currentsubsection]
+  \end{frame}}
+
+\mode<all>
